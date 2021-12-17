@@ -29,3 +29,7 @@ override.tf.json
 # example: *tfplan*
 
 .idea
+
+jenkins/keypair/id_rsa
+jenkins/keypair/id_rsa.pub
+/lib/
