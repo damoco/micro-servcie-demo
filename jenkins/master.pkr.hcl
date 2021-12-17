@@ -1,9 +1,8 @@
-locals {
-  type = "master"
-}
-
 build {
-  sources = ["source.amazon-ebs.ami"]
+  source "source.amazon-ebs.ami" {
+    ami_name = "jenkins-master-${var.version}"
+  }
+#  sources = ["source.amazon-ebs.ami"]
 
   provisioner "file" {
     source      = "master/scripts"

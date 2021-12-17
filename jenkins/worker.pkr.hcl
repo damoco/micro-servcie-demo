@@ -1,9 +1,8 @@
-locals {
-  type = "worker"
-}
-
 build {
-  sources = ["source.amazon-ebs.ami"]
+  source "source.amazon-ebs.ami" {
+    ami_name = "jenkins-worker-${var.version}"
+  }
+  #  sources = ["source.amazon-ebs.ami"]
 
   provisioner "shell" {
     execute_command = "sudo -E -S sh '{{ .Path }}'"
