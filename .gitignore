@@ -30,6 +30,6 @@ override.tf.json
 
 .idea
 
-jenkins/keypair/id_rsa
-jenkins/keypair/id_rsa.pub
+jenkins/packer/keypair/id_rsa
+jenkins/packer/keypair/id_rsa.pub
 /lib/
