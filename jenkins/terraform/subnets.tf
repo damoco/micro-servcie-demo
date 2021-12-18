@@ -9,3 +9,15 @@ resource "aws_subnet" "public_subnets" {
     Author = var.author
   }
 }
+
+resource "aws_subnet" "private_subnets" {
+  vpc_id                  = aws_vpc.management.id
+  cidr_block              = "10.0.${count.index*2}.0/24"
+  availability_zone       = element(var.availability_zones, count.index)
+  map_public_ip_on_launch = false
+  count                   = var.public_subnets_count
+  tags                    = {
+    Name   = "private_10.0.${count.index*2}.0/24_${element(var.availability_zones, count.index)}"
+    Author = var.author
+  }
+}
