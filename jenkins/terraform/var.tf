@@ -1,7 +1,7 @@
 // Provided at runtime
 
 variable "region" {
-  type = string
+  type        = string
   description = "AWS region"
 }
 
@@ -11,20 +11,21 @@ variable "region" {
 #}
 
 variable "aws_profile" {
-  type = string
+  type        = string
   description = "AWS profile"
 }
 
 variable "author" {
-  type = string
+  type        = string
   description = "Created by"
 }
 
-#variable "availability_zones" {
-#  type        = list(string)
-#  description = "List of Availability Zones"
-#}
-#
+variable "availability_zones" {
+  type        = list(string)
+  description = "List of Availability Zones"
+  default     = ["cn-northwest-1a", "cn-northwest-1b", "cn-northwest-1c"]
+}
+
 #variable "public_key" {
 #  type = string
 #  description = "SSH public key path"
@@ -63,45 +64,45 @@ variable "author" {
 // Default values
 
 variable "vpc_name" {
-  type = string
+  type        = string
   description = "VPC name"
   default     = "management"
 }
 
 variable "cidr_block" {
-  type = string
+  type        = string
   description = "VPC CIDR block"
   default     = "10.0.0.0/16"
 }
 
-#variable "public_subnets_count" {
-#  type = number
-#  description = "Number of public subnets"
-#  default = 2
-#}
-#
-#variable "private_subnets_count" {
-#  type = number
-#  description = "Number of private subnets"
-#  default = 2
-#}
-#
-#variable "bastion_instance_type" {
-#  type = string
-#  description = "Bastion instance type"
-#  default = "t2.micro"
-#}
-#
-#variable "jenkins_master_instance_type" {
-#  type = string
-#  description = "Jenkins master EC2 instance type"
-#  default = "t2.micro"
-##  default = "t2.large"
-#}
-#
-#variable "jenkins_worker_instance_type" {
-#  type = string
-#  description = "Jenkins worker EC2 instance type"
-#  default = "t2.micro"
-##  default = "t2.medium"
-#}
+variable "public_subnets_count" {
+  type        = number
+  description = "Number of public subnets"
+  default     = 2
+}
+
+variable "private_subnets_count" {
+  type        = number
+  description = "Number of private subnets"
+  default     = 2
+}
+
+variable "bastion_instance_type" {
+  type        = string
+  description = "Bastion instance type"
+  default     = "t2.micro"
+}
+
+variable "jenkins_master_instance_type" {
+  type        = string
+  description = "Jenkins master EC2 instance type"
+  default     = "t2.micro"
+  #  default = "t2.large"
+}
+
+variable "jenkins_worker_instance_type" {
+  type        = string
+  description = "Jenkins worker EC2 instance type"
+  default     = "t2.micro"
+  #  default = "t2.medium"
+}

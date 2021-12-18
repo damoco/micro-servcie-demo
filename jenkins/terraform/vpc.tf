@@ -1,4 +1,4 @@
-resource "aws_vpc" "default" {
+resource "aws_vpc" "management" {
   cidr_block           = var.cidr_block
   enable_dns_hostnames = true
 
