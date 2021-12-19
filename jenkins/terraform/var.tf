@@ -107,3 +107,7 @@ variable "jenkins_worker_instance_type" {
   default     = "t2.micro"
   #  default = "t2.medium"
 }
+
+variable "rundeck_token" {
+  type = string
+}
