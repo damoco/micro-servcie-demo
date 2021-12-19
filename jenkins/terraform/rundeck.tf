@@ -7,12 +7,12 @@ terraform {
 }
 provider "rundeck" {
   auth_token = var.rundeck_token
-  url        = "localhost:4440"
+  url        = "http://localhost:4440"
 }
 
 locals {
   rundeck = {
-    file   = "rundeck_nodes.yml"
+    file   = "rundeck_nodes.json"
     bucket = "rundeck"
   }
 }
@@ -24,6 +24,8 @@ locals {
 resource "aws_s3_bucket_object" "nodes" {
   bucket  = local.rundeck.bucket
   key     = local.rundeck.file
+  content_type = "application/json"
+  acl = "public-read"
   content = jsonencode({
     bastion = {
       hostname = aws_instance.bastion.public_ip
