@@ -31,6 +31,7 @@ resource "aws_s3_bucket_object" "nodes" {
     bastion = {
       hostname = aws_instance.bastion.public_ip
       username = "ec2-user"
+      tags     = "bastion,centos"
     }
   })
 }
