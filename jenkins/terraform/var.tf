@@ -26,11 +26,12 @@ variable "availability_zones" {
   default     = ["cn-northwest-1a", "cn-northwest-1b", "cn-northwest-1c"]
 }
 
-#variable "public_key" {
-#  type = string
-#  description = "SSH public key path"
-#}
-#
+variable "public_key" {
+  type        = string
+  description = "SSH public key path"
+  default     = "~/.ssh/id_rsa.pub"
+}
+
 #variable "hosted_zone_id" {
 #  type = string
 #  description = "Route53 hosted zone id"
