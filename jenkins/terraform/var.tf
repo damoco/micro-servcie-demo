@@ -26,11 +26,22 @@ variable "availability_zones" {
   default     = ["cn-northwest-1a", "cn-northwest-1b", "cn-northwest-1c"]
 }
 
-variable "public_key" {
+variable "key_name" {
   type        = string
-  description = "SSH public key path"
-  default     = "~/.ssh/id_rsa.pub"
+  description = "SSH key name"
 }
+
+#variable "public_key" {
+#  type        = string
+#  description = "SSH public key path"
+#  default     = "~/.ssh/id_rsa.pub"
+#}
+#
+#variable "private_key" {
+#  type        = string
+#  description = "SSH private key path"
+#  default     = "~/.ssh/id_rsa"
+#}
 
 #variable "hosted_zone_id" {
 #  type = string
