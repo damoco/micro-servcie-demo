@@ -65,3 +65,25 @@ data "template_file" "user_data_jenkins_worker" {
     jenkins_credentials_id = var.jenkins_credentials_id
   }
 }
+
+resource "aws_autoscaling_group" "jenkins_workers" {
+  name                 = "jenkins_workers_asg"
+  launch_configuration = aws_launch_configuration.jenkins_workers_launch_conf.name
+  vpc_zone_identifier  = [for subnet in aws_subnet.private_subnets : subnet.id]
+  min_size             = 1
+  max_size             = 2
+  depends_on           = [aws_instance.jenkins_master, aws_elb.jenkins_elb]
+  lifecycle {
+    create_before_destroy = true
+  }
+  tag {
+    key                 = "Name"
+    value               = "jenkins_worker"
+    propagate_at_launch = true
+  }
+  tag {
+    key                 = "Author"
+    value               = var.author
+    propagate_at_launch = true
+  }
+}
