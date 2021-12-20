@@ -25,11 +25,6 @@ data "aws_ami" "bastion" {
   }
 }
 
-#resource "aws_key_pair" "management" {
-#  key_name   = "management"
-#  public_key = file(var.public_key)
-#}
-
 resource "aws_security_group" "bastion_host" {
   name        = "bastion_sg_${var.vpc_name}"
   description = "Allow SSH from anywhere"

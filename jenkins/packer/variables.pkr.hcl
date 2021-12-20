@@ -15,7 +15,7 @@ variable "region" {
 
 variable "ssh_key" {
   type    = string
-  default = "keypair/id_rsa"
+  default = "../keypair/id_rsa"
 }
 
 variable "version" {

@@ -31,12 +31,12 @@ variable "key_name" {
   description = "SSH key name"
 }
 
-#variable "public_key" {
-#  type        = string
-#  description = "SSH public key path"
-#  default     = "~/.ssh/id_rsa.pub"
-#}
-#
+variable "public_key" {
+  type        = string
+  description = "SSH public key path"
+  default     = "../keypair/id_rsa.pub"
+}
+
 #variable "private_key" {
 #  type        = string
 #  description = "SSH private key path"
@@ -58,20 +58,20 @@ variable "ssl_arn" {
   description = "ACM SSL ARN"
 }
 
-#variable "jenkins_username" {
-#  type = string
-#  description = "Jenkins admin user"
-#}
-#
-#variable "jenkins_password" {
-#  type = string
-#  description = "Jenkins admin password"
-#}
-#
-#variable "jenkins_credentials_id" {
-#  type = string
-#  description = "Jenkins workers SSH based credentials id"
-#}
+variable "jenkins_username" {
+  type        = string
+  description = "Jenkins admin user"
+}
+
+variable "jenkins_password" {
+  type        = string
+  description = "Jenkins admin password"
+}
+
+variable "jenkins_credentials_id" {
+  type        = string
+  description = "Jenkins workers SSH based credentials id"
+}
 
 // Default values
 
