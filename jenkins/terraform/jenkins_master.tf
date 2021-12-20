@@ -73,6 +73,14 @@ resource "aws_elb" "jenkins_elb" {
     lb_protocol       = "http"
   }
 
+  listener {
+    instance_port      = 8080
+    instance_protocol  = "http"
+    lb_port            = 443
+    lb_protocol        = "https"
+    ssl_certificate_id = var.ssl_arn
+  }
+
   health_check {
     healthy_threshold   = 2
     unhealthy_threshold = 2
@@ -98,6 +106,13 @@ resource "aws_security_group" "elb_jenkins_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = "443"
+    to_port     = "443"
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = "0"
     to_port     = "0"
@@ -108,5 +123,17 @@ resource "aws_security_group" "elb_jenkins_sg" {
   tags = {
     Name   = "elb_jenkins_sg"
     Author = var.author
+  }
+}
+
+resource "aws_route53_record" "jenkins_master" {
+  zone_id = var.hosted_zone_id
+  name    = "jenkins.${var.domain_name}"
+  type    = "A"
+
+  alias {
+    name                   = aws_elb.jenkins_elb.dns_name
+    zone_id                = aws_elb.jenkins_elb.zone_id
+    evaluate_target_health = true
   }
 }

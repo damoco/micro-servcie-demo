@@ -43,21 +43,21 @@ variable "key_name" {
 #  default     = "~/.ssh/id_rsa"
 #}
 
-#variable "hosted_zone_id" {
-#  type = string
-#  description = "Route53 hosted zone id"
-#}
-#
-#variable "domain_name" {
-#  type = string
-#  description = "Domain name"
-#}
-#
-#variable "ssl_arn" {
-#  type = string
-#  description = "ACM SSL ARN"
-#}
-#
+variable "hosted_zone_id" {
+  type        = string
+  description = "Route53 hosted zone id"
+}
+
+variable "domain_name" {
+  type        = string
+  description = "Domain name"
+}
+
+variable "ssl_arn" {
+  type        = string
+  description = "ACM SSL ARN"
+}
+
 #variable "jenkins_username" {
 #  type = string
 #  description = "Jenkins admin user"
