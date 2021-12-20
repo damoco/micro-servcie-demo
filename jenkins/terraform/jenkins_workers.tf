@@ -87,3 +87,29 @@ resource "aws_autoscaling_group" "jenkins_workers" {
     propagate_at_launch = true
   }
 }
+
+resource "aws_cloudwatch_metric_alarm" "high-cpu-jenkins-workers-alarm" {
+  alarm_name          = "high-cpu-jenkins-workers-alarm"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = "120"
+  statistic           = "Average"
+  threshold           = "80"
+
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_group.jenkins_workers.name
+  }
+
+  alarm_description = "This metric monitors workers cpu utilization"
+  alarm_actions     = [aws_autoscaling_policy.scale-out.arn]
+}
+
+resource "aws_autoscaling_policy" "scale-out" {
+  name                   = "scale-out-jenkins-workers"
+  scaling_adjustment     = 1
+  adjustment_type        = "ChangeInCapacity"
+  cooldown               = 300
+  autoscaling_group_name = aws_autoscaling_group.jenkins_workers.name
+}
