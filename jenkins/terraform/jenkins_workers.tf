@@ -1,5 +1,5 @@
 resource "aws_launch_configuration" "jenkins_workers_launch_conf" {
-  name            = "jenkins_workers_config"
+  name_prefix     = "jenkins_workers_config"
   image_id        = data.aws_ami.jenkins-worker.id
   instance_type   = var.jenkins_worker_instance_type
   key_name        = aws_key_pair.management.id
