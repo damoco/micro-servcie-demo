@@ -13,7 +13,7 @@ resource "aws_eks_cluster" "sandbox" {
 
 resource "aws_iam_role" "cluster_role" {
   name = "${var.cluster_name}-eks-role"
-
+  force_detach_policies = true
   assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -31,12 +31,12 @@ POLICY
 }
 
 resource "aws_iam_role_policy_attachment" "cluster_policy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+  policy_arn = "arn:aws-cn:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.cluster_role.name
 }
 
 resource "aws_iam_role_policy_attachment" "service_policy" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+  policy_arn = "arn:aws-cn:iam::aws:policy/AmazonEKSServicePolicy"
   role       = aws_iam_role.cluster_role.name
 }
 
